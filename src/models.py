@@ -31,7 +31,7 @@ class Characters(db.Model):
     __tablename__ = 'characters'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    age = db.Column(db.String(80), unique=False, nullable=False)
+    age = db.Column(db.String(80), unique=False, nullable=True)
     heigh = db.Column(db.Integer)
     favorites = db.relationship('FavoritesCharacters', backref='characters', lazy=True)
 
@@ -53,7 +53,7 @@ class Planets(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
-    climate = db.Column(db.String(250), nullable=False)
+    climate = db.Column(db.String(250), nullable=True)
     population = db.Column(db.Integer)
     favorites = db.relationship('FavoritesPlanets', backref='planets', lazy=True)
 

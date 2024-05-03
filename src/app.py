@@ -11,6 +11,7 @@ from admin import setup_admin
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from models import db, User, Characters, Planets, Vehicles, FavoritesCharacters, FavoritesPlanets, FavoritesVehicles
 #from models import Person
+# import requests
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -370,7 +371,18 @@ def delete_favorite_vehicle(vehicle_id):
         else:
             return jsonify({"msg":"Favorite vehicle don't exist"}), 404
 
-
+# @app.route('/get_vehicle', methods=['GET'])
+# def get_vehicle():
+#     url = 'https://www.swapi.tech/api/vehicles'
+    
+#     response = requests.get(url)
+#     data = response.json()
+#     for vehicle in data.get('results', []):
+#         if not Vehicles.query.filter_by(name=vehicle.get('name')).first():
+#             new_vehicle = Vehicles(id=vehicle.get('id'), name=vehicle.get('name'))
+#             db.session.add(new_vehicle)
+#             db.session.commit()
+#     return jsonify(new_vehicle), 200
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
